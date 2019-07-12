@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import "bootstrap/dist/css/bootstrap.min.css"
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 export default class NavBar extends Component {
