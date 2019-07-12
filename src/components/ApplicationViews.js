@@ -2,6 +2,7 @@ import { Route } from 'react-router-dom'
 import React, { Component } from 'react'
 import LocationList from './Location/LocationList'
 import EmployeeList from './Employee/EmployeeList'
+import AnimalList from './Animal/AnimalList'
 
 export default class ApplicationViews extends Component {
 
@@ -17,9 +18,19 @@ export default class ApplicationViews extends Component {
         { id: 2, name: "Nashville South", address: "10101 Binary Court" }
     ]
 
+    animalsFromAPI = [
+        { id: 1, name: "Doodles" },
+        { id: 2, name: "Jack" },
+        { id: 3, name: "Angus" },
+        { id: 4, name: "Henley" },
+        { id: 5, name: "Derkins" },
+        { id: 6, name: "Checkers" }
+    ]
+
     state = {
         employees: this.employeesFromAPI,
-        locations: this.locationsFromAPI
+        locations: this.locationsFromAPI,
+        animals: this.animalsFromAPI
     }
 
     render() {
@@ -30,6 +41,9 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route path="/employees" render={(props) => {
                     return <EmployeeList employees={this.state.employees} />
+                }} />
+                <Route path="/animals" render={(props) => {
+                    return <AnimalList animals={this.state.animals} />
                 }} />
             </React.Fragment>
         )
