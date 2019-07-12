@@ -1,17 +1,10 @@
 import { Route } from 'react-router-dom'
-import React, { Component } from "react"
-import AnimalList from './animal/AnimalList'
-import LocationList from './location/LocationList'
-import EmployeeList from './employee/EmployeeList'
+import React, { Component } from 'react'
+import LocationList from './Location/LocationList'
+import EmployeeList from './Employee/EmployeeList'
 
-export default ApplicationViews extends Component {
+export default class ApplicationViews extends Component {
 
-    /*
-        Although you will eventually be pulling your objects
-        from your json-server API, for this chapter, we're
-        faking it and just creating those arrays in the component
-        itself
-    */
     employeesFromAPI = [
         { id: 1, name: "Jessica Younker" },
         { id: 2, name: "Jordan Nelson" },
@@ -19,7 +12,6 @@ export default ApplicationViews extends Component {
         { id: 4, name: "Blaise Roberts" }
     ]
 
-    // This will eventually get pulled from the API
     locationsFromAPI = [
         { id: 1, name: "Nashville North", address: "500 Circle Way" },
         { id: 2, name: "Nashville South", address: "10101 Binary Court" }
