@@ -3,4 +3,8 @@ import ReactDOM from 'react-dom';
 import Kennel from './components/Kennel/Kennel';
 import './index.css';
 
-ReactDOM.render(<Kennel />, document.getElementById('root'));
+ReactDOM.render(
+<Router>
+    <Kennel />
+</Router>
+, document.getElementById('root'));
