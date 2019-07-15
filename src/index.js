@@ -6,7 +6,7 @@ import Kennel from './components/Kennel/Kennel';
 import './index.css';
 
 ReactDOM.render(
-<Router>
-    <Kennel />
-</Router>
-, document.getElementById('root'));
+        <Router>
+            <Kennel />
+        </Router>
+    , document.getElementById('root'));
