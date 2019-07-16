@@ -78,14 +78,16 @@ export default class ApplicationViews extends Component {
                     return <LocationList locations={this.state.locations} />
                 }} />
                 <Route path="/employees" render={(props) => {
-                    return <EmployeeList employees={this.state.employees} />
+                    return <EmployeeList    deleteEmployee={this.state.employees}
+                                            employees={this.state.employees} />
                 }} />
                 <Route path="/animals" render={(props) => {
                     return <AnimalList deleteAnimal={this.deleteAnimal}
                                         animals={this.state.animals} />
                 }} />
                 <Route path="/owners" render={(props) => {
-                    return <OwnerList owners={this.state.owners} />
+                    return <OwnerList   deleteOwner={this.state.owners}
+                                        owners={this.state.owners} />
                 }} />
             </React.Fragment>
         )
