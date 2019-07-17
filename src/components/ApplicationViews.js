@@ -52,14 +52,6 @@ export default class ApplicationViews extends Component {
     //     )
     // }
 
-        deleteAnimal = (id) => {
-            return APIManager.removeAndList("animals", id)
-            .then((animals) => this.setState({
-                animals: animals
-            })
-        )
-    }
-
 //     deleteAnimal = (id) => {
 //         const newState = {}
 //         return APIManager.removeAndList("animals", id)
@@ -71,27 +63,49 @@ export default class ApplicationViews extends Component {
 //     )
 // }
 
-        deleteEmployee = id => {
-            return fetch(`http://localhost:5002/employees/${id}`, {
-                method: "DELETE"
+        deleteAnimal = (id) => {
+            return APIManager.removeAndList("animals", id)
+            .then((animals) => this.setState({
+                animals: animals
             })
-            .then(e => e.json())
-            .then(() => fetch(`http://localhost:5002/employees`))
-            .then(e => e.json())
-            .then(employees => this.setState({
+        )
+    }
+
+    //     deleteEmployee = id => {
+    //         return fetch(`http://localhost:5002/employees/${id}`, {
+    //             method: "DELETE"
+    //         })
+    //         .then(e => e.json())
+    //         .then(() => fetch(`http://localhost:5002/employees`))
+    //         .then(e => e.json())
+    //         .then(employees => this.setState({
+    //             employees: employees
+    //         })
+    //     )
+    // }
+        deleteEmployee = (id) => {
+            return APIManager.removeAndList("employees", id)
+            .then((employees) => this.setState({
                 employees: employees
             })
         )
     }
 
-        deleteOwner = id => {
-            return fetch(`http://localhost:5002/owners/${id}`, {
-                method: "DELETE"
-            })
-            .then(e => e.json())
-            .then(() => fetch(`http://localhost:5002/owners`))
-            .then(e => e.json())
-            .then(owners => this.setState({
+    //     deleteOwner = id => {
+    //         return fetch(`http://localhost:5002/owners/${id}`, {
+    //             method: "DELETE"
+    //         })
+    //         .then(e => e.json())
+    //         .then(() => fetch(`http://localhost:5002/owners`))
+    //         .then(e => e.json())
+    //         .then(owners => this.setState({
+    //             owners: owners
+    //         })
+    //     )
+    // }
+        deleteOwner = (id) => {
+            return APIManager.removeAndList("owners", id)
+            .then((owners) => this.setState({
                 owners: owners
             })
         )
@@ -104,7 +118,7 @@ export default class ApplicationViews extends Component {
                     return <LocationList locations={this.state.locations} />
                 }} />
                 <Route path="/employees" render={(props) => {
-                    return <EmployeeList    deleteEmployee={this.state.employees}
+                    return <EmployeeList    deleteEmployee={this.deleteEmployee}
                                             employees={this.state.employees} />
                 }} />
                 <Route path="/animals" render={(props) => {
@@ -112,7 +126,7 @@ export default class ApplicationViews extends Component {
                                         animals={this.state.animals} />
                 }} />
                 <Route path="/owners" render={(props) => {
-                    return <OwnerList   deleteOwner={this.state.owners}
+                    return <OwnerList   deleteOwner={this.deleteOwner}
                                         owners={this.state.owners} />
                 }} />
             </React.Fragment>
