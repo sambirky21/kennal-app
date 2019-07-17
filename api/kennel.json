@@ -11,10 +11,6 @@
     {
       "id": 3,
       "name": "Zoe LeBlanc"
-    },
-    {
-      "id": 4,
-      "name": "Blaise Roberts"
     }
   ],
   "locations": [
@@ -41,14 +37,6 @@
     {
       "id": 3,
       "name": "Angus"
-    },
-    {
-      "id": 4,
-      "name": "Henley"
-    },
-    {
-      "id": 5,
-      "name": "Derkins"
     }
   ],
   "owners": [
@@ -61,11 +49,6 @@
       "id": 2,
       "name": "Stacy",
       "phoneNumber": "219-508-0978"
-    },
-    {
-      "id": 3,
-      "name": "Brian",
-      "phoneNumber": "219-508-1418"
     },
     {
       "id": 4,
