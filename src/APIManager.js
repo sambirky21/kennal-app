@@ -14,5 +14,18 @@ export default {
             .then(() => {
                 return this.getAll(element)
             })
-        }
+        },
+
+        post(newAnimal, element) {
+            return fetch(`${remoteURL}/${element}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(newAnimal)
+            }).then(data => data.json())
+            .then(() => {
+                return this.getAll(element)
+            })
+          }
 }

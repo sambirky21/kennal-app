@@ -7,6 +7,7 @@ import OwnerList from './Owner/OwnerList'
 import AnimalDetail from './Animal/AnimalDetail'
 import EmployeeDetail from './Employee/EmployeeDetail'
 import OwnerDetail from './Owner/OwnerDetail'
+import AnimalForm from './Animal/AnimalForm'
 import APIManager from '../APIManager';
 import { withRouter } from 'react-router'
 
@@ -59,6 +60,15 @@ class ApplicationViews extends Component {
     )
 }
 
+        addAnimal = (animal) => {
+            return APIManager.post(animal, "animals")
+            .then(animals =>
+            this.setState({
+                animals: animals
+            })
+        )
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -84,8 +94,14 @@ class ApplicationViews extends Component {
                                 deleteEmployee={ this.deleteEmployee } />
                     }} />
                 <Route exact path="/animals" render={(props) => {
-                    return <AnimalList deleteAnimal={this.deleteAnimal}
+                    return <AnimalList  {...props}
+                                        deleteAnimal={this.deleteAnimal}
                                         animals={this.state.animals} />
+                }} />
+                <Route path="/animals/new" render={(props) => {
+                    return <AnimalForm  {...props}
+                                        addAnimal={this.addAnimal}
+                                        employees={this.state.employees} />
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
                     // Find the animal with the id of the route parameter
@@ -101,6 +117,7 @@ class ApplicationViews extends Component {
                     return <AnimalDetail animal={ animal }
                                 deleteAnimal={ this.deleteAnimal } />
                     }} />
+
                 <Route exact path="/owners" render={(props) => {
                     return <OwnerList   deleteOwner={this.deleteOwner}
                                         owners={this.state.owners} />
