@@ -28,19 +28,27 @@
   "animals": [
     {
       "id": 1,
-      "name": "Doodles"
+      "name": "Doodles",
+      "breed": "Golden Doodle",
+      "employeeId": 1
     },
     {
       "id": 2,
-      "name": "Jack"
-    },
-    {
-      "id": 3,
-      "name": "Angus"
+      "name": "Jack",
+      "breed": "Jack Russell Terrier",
+      "employeeId": 2
     },
     {
       "name": "Podge",
-      "id": 4
+      "id": 4,
+      "breed": "Golden Doodle",
+      "employeeId": 1
+    },
+    {
+      "name": "Rocko",
+      "breed": "Nova Scotia",
+      "employeeId": 1,
+      "id": 5
     }
   ],
   "owners": [

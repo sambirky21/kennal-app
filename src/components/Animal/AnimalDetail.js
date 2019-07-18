@@ -17,6 +17,7 @@ export default class Animal extends Component {
                             <img src={ dog } className="icon--dog" alt="dog" />
                             { this.props.animal.name }
                         </h4>
+                        <h6 className="card-title">{ this.props.animal.breed }</h6>
                         <button onClick={
                                 () => {
                                     this.setState(

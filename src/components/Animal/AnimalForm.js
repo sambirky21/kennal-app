@@ -3,7 +3,9 @@ import "./Animal.css"
 
 export default class AnimalForm extends Component {
     state = {
-        animalName: ""
+        animalName: "",
+        breed: "",
+        employeeId: ""
     };
 
     handleFieldChange = evt => {
@@ -19,6 +21,8 @@ export default class AnimalForm extends Component {
         } else {
           const animal = {
             name: this.state.animalName,
+            breed: this.state.breed,
+            employeeId: parseInt(this.state.employeeId)
           }
         this.props
             .addAnimal(animal)
@@ -41,6 +45,33 @@ export default class AnimalForm extends Component {
                 id="animalName"
                 placeholder="Animal name"
                 />
+            </div>
+            <div className="form-group">
+                <label htmlFor="breed">Breed</label>
+                <input
+                    type="text"
+                    required
+                    className="form-control"
+                    onChange={this.handleFieldChange}
+                    id="breed"
+                    placeholder="Breed"
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="employee">Assign to caretaker</label>
+                <select
+                    defaultValue=""
+                    name="employee"
+                    id="employeeId"
+                    onChange={this.handleFieldChange}
+                    >
+                    <option value="">Select an employee</option>
+                    {this.props.employees.map(e => (
+                        <option key={e.id} id={e.id} value={e.id}>
+                        {e.name}
+                        </option>
+                    ))}
+                </select>
             </div>
             <button
                 type="submit"
