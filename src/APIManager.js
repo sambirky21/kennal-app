@@ -6,6 +6,11 @@ export default {
             .then( e => e.json())
         },
 
+        get(element,id) {
+            return fetch(`${remoteURL}/${element}/${id}`)
+            .then(e => e.json())
+        },
+
         removeAndList(element, id) {
             return fetch(`${remoteURL}/${element}/${id}`, {
                 method: "DELETE"
@@ -23,6 +28,19 @@ export default {
                 "Content-Type": "application/json"
               },
               body: JSON.stringify(newAnimal)
+            }).then(data => data.json())
+            .then(() => {
+                return this.getAll(element)
+            })
+          },
+
+          put(editedAnimal, element) {
+            return fetch(`${remoteURL}/${element}/${editedAnimal.id}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(editedAnimal)
             }).then(data => data.json())
             .then(() => {
                 return this.getAll(element)
