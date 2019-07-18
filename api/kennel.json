@@ -43,6 +43,24 @@
       "id": 4,
       "breed": "Golden Doodle",
       "employeeId": 1
+    },
+    {
+      "name": "Rocko",
+      "breed": "Pit Bull",
+      "employeeId": 2,
+      "id": 5
+    },
+    {
+      "name": "Chloe",
+      "breed": "Dachshund",
+      "employeeId": 3,
+      "id": 6
+    },
+    {
+      "id": 7,
+      "name": "Jeff",
+      "breed": "Golden",
+      "employeeId": 2
     }
   ],
   "owners": [

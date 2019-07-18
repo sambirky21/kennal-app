@@ -8,6 +8,7 @@ import AnimalDetail from './Animal/AnimalDetail'
 import EmployeeDetail from './Employee/EmployeeDetail'
 import OwnerDetail from './Owner/OwnerDetail'
 import AnimalForm from './Animal/AnimalForm'
+import AnimalEditForm from './Animal/AnimalEditForm'
 import APIManager from '../APIManager';
 import Login from './Authentication/Login'
 import { withRouter } from 'react-router'
@@ -71,6 +72,16 @@ class ApplicationViews extends Component {
             })
         )
     }
+        updateAnimal = (editedAnimalObject) => {
+            return APIManager.put(editedAnimalObject, "animals")
+            .then(animals =>
+            this.setState({
+                animals: animals
+            })
+        )
+    }
+
+// this.props.history.push("/animals")
 
     render() {
         return (
@@ -122,7 +133,7 @@ class ApplicationViews extends Component {
                                         addAnimal={this.addAnimal}
                                         employees={this.state.employees} />
                 }} />
-                <Route path="/animals/:animalId(\d+)" render={(props) => {
+                <Route exact path="/animals/:animalId(\d+)" render={(props) => {
                     // Find the animal with the id of the route parameter
                     let animal = this.state.animals.find(animal =>
                         animal.id === parseInt(props.match.params.animalId)
@@ -136,6 +147,12 @@ class ApplicationViews extends Component {
                     return <AnimalDetail animal={ animal }
                                 deleteAnimal={ this.deleteAnimal } />
                     }} />
+                <Route path="/animals/:animalId(\d+)/edit" render={props => {
+                    return <AnimalEditForm
+                                    {...props}
+                                    employees={this.state.employees}
+                                    updateAnimal={this.updateAnimal}/>
+                }}/>
 
                 <Route exact path="/owners" render={(props) => {
                     if (this.isAuthenticated()) {
