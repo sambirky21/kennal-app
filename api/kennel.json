@@ -43,12 +43,6 @@
       "id": 4,
       "breed": "Golden Doodle",
       "employeeId": 1
-    },
-    {
-      "name": "Rocko",
-      "breed": "Nova Scotia",
-      "employeeId": 1,
-      "id": 5
     }
   ],
   "owners": [
