@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import React, { Component } from 'react'
 import LocationList from './Location/LocationList'
 import EmployeeList from './Employee/EmployeeList'
@@ -9,9 +9,12 @@ import EmployeeDetail from './Employee/EmployeeDetail'
 import OwnerDetail from './Owner/OwnerDetail'
 import AnimalForm from './Animal/AnimalForm'
 import APIManager from '../APIManager';
+import Login from './Authentication/Login'
 import { withRouter } from 'react-router'
 
 class ApplicationViews extends Component {
+
+    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
     state = {
         employees: [],
@@ -73,11 +76,20 @@ class ApplicationViews extends Component {
         return (
             <React.Fragment>
                 <Route exact path="/" render={(props) => {
-                    return <LocationList locations={this.state.locations} />
+                    if (this.isAuthenticated()) {
+                        return <LocationList      LocationList locations={this.state.locations} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
+
                 <Route exact path="/employees" render={(props) => {
-                    return <EmployeeList    deleteEmployee={this.deleteEmployee}
-                                            employees={this.state.employees} />
+                    if (this.isAuthenticated()) {
+                        return <EmployeeList deleteEmployee={this.deleteEmployee}
+                                             employees={this.state.employees} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
                     // Find the employee with the id of the route parameter
@@ -94,10 +106,15 @@ class ApplicationViews extends Component {
                                 deleteEmployee={ this.deleteEmployee } />
                     }} />
                 <Route exact path="/animals" render={(props) => {
-                    return <AnimalList  {...props}
-                                        deleteAnimal={this.deleteAnimal}
-                                        animals={this.state.animals} />
+                    if (this.isAuthenticated()) {
+                        return <AnimalList      {...props}
+                                                deleteAnimal={this.deleteAnimal}
+                                                animals={this.state.animals} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
+
                 <Route path="/animals/new" render={(props) => {
                     return <AnimalForm  {...props}
                                         addAnimal={this.addAnimal}
@@ -119,9 +136,14 @@ class ApplicationViews extends Component {
                     }} />
 
                 <Route exact path="/owners" render={(props) => {
-                    return <OwnerList   deleteOwner={this.deleteOwner}
-                                        owners={this.state.owners} />
+                    if (this.isAuthenticated()) {
+                        return <OwnerList      deleteOwner={this.deleteOwner}
+                                                owners={this.state.owners} />
+                    } else {
+                        return <Redirect to="/login" />
+                    }
                 }} />
+
                 <Route path="/owners/:ownerId(\d+)" render={(props) => {
                     // Find the owner with the id of the route parameter
                     let owner = this.state.owners.find(owner =>
@@ -136,6 +158,7 @@ class ApplicationViews extends Component {
                     return <OwnerDetail owner={ owner }
                                 deleteOwner={ this.deleteOwner } />
                     }} />
+                <Route path="/login" component={Login} />
             </React.Fragment>
         )
     }
